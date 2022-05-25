@@ -109,6 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+export*
 
 # Spyder project settings
 .spyderproject
