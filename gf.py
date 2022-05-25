@@ -1,32 +1,22 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
+from func import extract_date
 
 header = {
 	'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0'
 }
-
-def extract_date(date_str):
-	vday = date_str.split('.')[0].zfill(2)
-	vmonth = date_str.split('.')[1].zfill(2)
-	vyear = date_str.split('.')[2]
-	if len(vyear)==2:
-		vdate = datetime.strptime(f'{vday}.{vmonth}.{vyear}', '%d.%m.%y')
-	else:
-		vdate = datetime.strptime(f'{vday}.{vmonth}.{vyear}', '%d.%m.%Y')
-	return vdate.strftime('%Y-%m-%d')
 
 def get_articles(articles):
 	for article in articles:
 		title = article.h2.text
 		arcticle_id = article['id']
 		print(f'parsing post {arcticle_id} with title {title}')
-		if '|' in title:
-			date = title.split('|')[0].strip()
-		else:
-			date = title.split(' ')[0].strip()
+		# if '|' in title:
+		# 	date = title.split('|')[0].strip()
+		# else:
+		# 	date = title.split(' ')[0].strip()
 		try:
-			date = extract_date(date)
+			date = extract_date(title)
 		except:
 			date = 'unknown'
 		link = article.find('h2',class_='entry-title taggedlink').a['href']
