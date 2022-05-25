@@ -1,10 +1,12 @@
 # Web parser to extract Traktor *Spielberichte* from https://traktor-boxhagen.de
 
-**Task List:**
+##**Task List:**
+
+### Done:
 
 - [x] GF Spielberichte
-## Vergangene Saisons:
 - [x] Großfeld (seit 2012)
+### to be implemented:
 - [ ] Ü 32 (seit 2012)
 - [ ] I. Mannschaft
 - [ ] II. Mannschaft
