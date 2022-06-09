@@ -2,10 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 from func import extract_date,traktor_clean_article
 import os
+from docx import Document
+from docx.shared import Inches
 
 header = {
 	'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0'
 }
+
+doc_name = 'Spielberichte_Traktor_GF.docx'
+
+document = Document()
+
+document.add_heading('Spielberichte Traktor Großfeld alt', 0)
 
 
 chapter_dict = {
@@ -37,6 +45,7 @@ arcticle_dict = {}
 for article in articles:
 	chapter = article.find('div',class_='sp-head unfolded') or article.div.text
 	chapter = chapter.replace('\n','').strip()
+	document.add_heading(chapter, level=1)
 	if chapter == 'Kreisliga A | Saison 2012/2013':
 		print('debug!')
 	folder_name = chapter_dict[chapter]
@@ -73,12 +82,16 @@ for article in articles:
 					else:
 						title = f'{title}\n{s_tag.text.strip()}'
 			f = open(f'../export_gf_old/{folder_name}/{date}_{article_id}.txt','w',encoding='utf8')
+			document.add_page_break()
 			# f.write(f'{title}\n')
 			file_open = True
 			# texts = p.find_next_siblings('p')
 		if file_open:
-			f.write(f'{p.text.strip()}\n')
+			if p.text.strip() != '':
+				f.write(f'{p.text.strip()}\n')
+				para = document.add_paragraph(p.text.strip())
 			
+document.save(doc_name)
 
 
 			# with open(f'./export_gf_old/{date}_{article_id}.txt','w',encoding='utf8') as f:
