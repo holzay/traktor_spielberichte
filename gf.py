@@ -38,7 +38,7 @@ def get_articles(articles,word_doc):
 		soup = BeautifulSoup(r,'html.parser')
 		paragraphs = soup.find_all('p')
 		document.add_heading(title, level=1)
-		document.add_paragraph(link, style='Intense Quote')
+		# document.add_paragraph(link, style='Intense Quote')
 		for p in paragraphs:
 			if p.text.strip() != '':
 				para = document.add_paragraph(p.text)
