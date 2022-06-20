@@ -11,4 +11,5 @@
 - [ ] I. Mannschaft
 - [ ] II. Mannschaft
 - [ ] Ü 40 (2009 – 2011)
-- [ ] Word document output
+- [x] Word document output
+- [ ] get uniform date format in titles
