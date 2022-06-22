@@ -6,10 +6,11 @@
 
 - [x] GF Spielberichte
 - [x] Großfeld (seit 2012)
-### to be implemented:
-- [ ] Ü 32 (seit 2012)
-- [ ] I. Mannschaft
-- [ ] II. Mannschaft
-- [ ] Ü 40 (2009 – 2011)
+- [x] Ü 32 (seit 2012)
+- [x] I. Mannschaft
+- [x] II. Mannschaft
+- [x] Ü 40 (2009 – 2011)
 - [x] Word document output
+### to be implemented:
+
 - [ ] get uniform date format in titles
