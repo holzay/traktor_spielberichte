@@ -1,10 +1,12 @@
 from datetime import datetime
 
-def extract_date(date_str,orig_paragraph):
-	if '|' in date_str:
-		date_str = date_str.split('|')[0].strip()
+def extract_date(title):
+	if '|' in title:
+		date_str = title.split('|')[0].strip()
+		new_title = title.split('|')[1].replace('\t',' ').replace('  ',' ').strip()
 	else:
-		date_str = date_str.split(' ')[0].strip()
+		date_str = title.split(' ')[0].strip()
+		new_title = title.split(' ')[1].replace('\t',' ').replace('  ',' ').strip()
 	date_str = date_str.replace('`','')
 	vday = date_str.split('.')[0].zfill(2)
 	vmonth = date_str.split('.')[1].zfill(2)
@@ -13,7 +15,7 @@ def extract_date(date_str,orig_paragraph):
 		vdate = datetime.strptime(f'{vday}.{vmonth}.{vyear}', '%d.%m.%y')
 	else:
 		vdate = datetime.strptime(f'{vday}.{vmonth}.{vyear}', '%d.%m.%Y')
-	return vdate.strftime('%Y-%m-%d')
+	return vdate.strftime('%d.%m.%Y'),new_title,vdate.strftime('%Y%m%d')
 
 def traktor_clean_article(text):
 	if '\n' in text and text.split('\n')[1][:1].isnumeric():
