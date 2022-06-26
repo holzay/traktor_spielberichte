@@ -6,7 +6,7 @@ def extract_date(title):
 		new_title = title.split('|')[1].replace('\t',' ').replace('  ',' ').strip()
 	else:
 		date_str = title.split(' ')[0].strip()
-		new_title = title.split(' ')[1].replace('\t',' ').replace('  ',' ').strip()
+		new_title = title.split(' ',1)[1].replace('\t',' ').replace('  ',' ').strip()
 	date_str = date_str.replace('`','')
 	vday = date_str.split('.')[0].zfill(2)
 	vmonth = date_str.split('.')[1].zfill(2)
